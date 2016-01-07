@@ -42,8 +42,8 @@ var MiniNpmGenerator = yeoman.generators.Base.extend({
   },
   prompting:  function () {
     var done = this.async();
-    this.log(chalk.magenta('This Yeoman generator will scaffold new npm package for you.'));
-    this.log('Make sure you \'mkdir <package-name>; cd <package-name>\'.');
+    this.log(chalk.magenta('This Yeoman generator will scaffold new rest api application for you.'));
+    this.log('Make sure you \'mkdir <app-name>; cd <app-name>\'.');
 
     this._promptPkgName();
   },
@@ -51,29 +51,29 @@ var MiniNpmGenerator = yeoman.generators.Base.extend({
     var done    = this.async();
     var prompts = [{
       name:     'pkgName',
-      message:  'What is the name of the package?',
+      message:  'What is the name of the application?',
       default:  slug(this.appname),
       validate: function (str) {
         return str.length > 0;
       }
-    }, {
-      type:    'confirm',
-      name:    'pkgName',
-      message: 'The name above already exists on npm, choose another?',
-      default: true,
-      when:    function (answers) {
-        var done = this.async();
-        process.stdout.write(chalk.yellow('Checking if name is available on NPM...'));
-        npmName(answers.pkgName)
-          .then(function (available) {
-            process.stdout.clearLine();
-            process.stdout.cursorTo(0);
-            if (!available) {
-              done(true);
-            }
-            done(false);
-          });
-      }
+    //}, {
+    //  type:    'confirm',
+    //  name:    'pkgName',
+    //  message: 'The name above already exists on npm, choose another?',
+    //  default: true,
+    //  when:    function (answers) {
+    //    var done = this.async();
+    //    process.stdout.write(chalk.yellow('Checking if name is available on NPM...'));
+    //    npmName(answers.pkgName)
+    //      .then(function (available) {
+    //        process.stdout.clearLine();
+    //        process.stdout.cursorTo(0);
+    //        if (!available) {
+    //          done(true);
+    //        }
+    //        done(false);
+    //      });
+    //  }
     }];
     this.prompt(prompts, function (props) {
       this.pkgName    = slug(props.pkgName);

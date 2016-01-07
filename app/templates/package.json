@@ -2,7 +2,7 @@
   "name": "<%= pkgName %>",
   "version": "0.0.0",
   "description": "<%= pkgDesc %>",
-  "main": "app/index.js",
+  "main": "./index.js",
   "scripts": {
     "lint": "eslint -f unix .",
     "inspect": "jsinspect",
@@ -23,7 +23,7 @@
     "coverall": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "keywords": [
-      "<%- keywords %>"
+    "<%- keywords %>"
   ],
   "author": "<%= fullName %> <<%= emailAddress %>>",
   "license": "MIT",
@@ -36,6 +36,9 @@
   },
   "homepage": "https://github.com/<%= githubName %>/<%= pkgName %>",
   "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "chai": "^3.4.1",
@@ -46,6 +49,12 @@
     "jsinspect": "^0.7.2",
     "mocha": "^2.3.4",
     "mockery": "^1.4.0",
-    "sinon": "^1.17.2"
+    "sinon": "^1.17.2",
+    "gulp": "^3.9.0",
+    "gulp-bump": "^1.0.0",
+    "gulp-util": "^3.0.7",
+    "gulp-zip": "^3.0.2",
+    "moment": "^2.11.0",
+    "run-sequence": "^1.1.5"
   }
 }

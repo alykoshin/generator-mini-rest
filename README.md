@@ -10,7 +10,7 @@
 
 # generator-mini-rest
 
-Simple NPM package scaffolding generator for [Yeoman](http://yeoman.io).
+Simple REST API application scaffolding generator for [Yeoman](http://yeoman.io).
 
 
 

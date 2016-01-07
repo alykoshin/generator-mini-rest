@@ -16,16 +16,50 @@
 If you have different needs regarding the functionality, please add a [feature request](https://github.com/<%= githubName %>/<%= pkgName %>/issues).
 
 
-## Installation
+# Prerequisites
+
+Assuming node and npm are already installed.
+All examples provided for Linux system.
+
+
+# Installation
 
 ```sh
-npm install --save <%= pkgName %>
+- download project archive 
+- unzip it: `unzip -d app source-*`
+- cd to new directory: `cd app`
+- install dependencies: `npm install`
 ```
 
-## Usage
+# Run 
+- `node index.js` 
 
 
-## Credits
+# Usage
+
+## 1. 
+
+#### Action:
+
+#### Results:
+
+- Browser output:
+
+```js
+```
+
+- Node console output:
+
+```
+```
+
+# Tests
+
+# TODO
+
+-
+
+# Credits
 [<%= fullName %>](https://github.com/<%= githubName %>/)
 
 

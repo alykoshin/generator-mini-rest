@@ -1,7 +1,7 @@
 {
   "name": "generator-mini-rest",
-  "version": "0.0.6",
-  "description": "Simple rest api application scaffolding generator for Yeoman",
+  "version": "0.0.0",
+  "description": "Simple REST API application scaffolding generator for Yeoman",
   "main": "app/index.js",
   "scripts": {
     "lint": "eslint -f unix .",
