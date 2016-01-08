@@ -1,9 +1,11 @@
 #!/usr/bin/env node
+
 'use strict';
 
 var pkg = require('./package.json');
-var <%= pkgVarName %> = require('./');
+var main = require('./');
 var argv = process.argv.slice(2);
+
 
 function help() {
   console.log([
@@ -23,15 +25,27 @@ function version() {
 
 if (argv.indexOf('--help') !== -1) {
   help();
-  return;
+  process.exit(0);
 }
 
 if (argv.indexOf('--version') !== -1) {
   version();
-  return;
+  process.exit(0);
 }
 
 
-<%= pkgVarName %>(argv[0], function() {
+process.on('SIGINT', function () {
+  console.log('Got a SIGINT. Goodbye cruel world');
+  process.exit(0);
+});
 
+
+main(argv[0], function() {
+  var err = true;
+
+  if (err) {
+    process.exit(1);
+  } else {
+    process.exit(0);
+  }
 });

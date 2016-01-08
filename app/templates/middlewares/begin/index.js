@@ -8,7 +8,12 @@ module.exports = function(app) {
     aliases: { '/': '/public' },
     //options: { maxAge: '1d' }, // default = 0;
   }, app); */
+  require('./debug')(app);
+
   require('./parsers')(app);
+
+  require('./security')(app);
+
   require('./static')(app);
 
 };

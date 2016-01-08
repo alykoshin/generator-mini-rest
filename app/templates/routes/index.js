@@ -3,20 +3,22 @@
 var router = require('express').Router();
 
 
-module.exports = function(app) {
-  //router.use('/api', require('./api'));
+router.use('/api', require('./api'));
 
-  //router.use('/ui', require('./ui'));
+//router.use('/ui', require('./ui'));
 
-  // Redirect from / to default page
-  //router.get('/', function(req, res) {
-  //  console.log('router.get(\'/\')');
-  //  res.redirect('/ui/');
-  //});
+// Redirect from / to default page
+//router.get('/', function(req, res) {
+//  console.log('router.get(\'/\')');
+//  res.redirect('/ui/');
+//});
 
-  //app.use(router);
+module.exports = router;
 
-  app.use('/api', require('./api')(app));
+//module.exports = function(app) {
+//app.use(router);
 
-};
+//app.use('/api', require('./api')(app));
+
+//};
 

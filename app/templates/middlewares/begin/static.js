@@ -26,7 +26,7 @@ var useStatic = function(config, app) {
     if (config.aliases.hasOwnProperty(alias)) {
       var localDir = path.join(config.rootDir, config.aliases[alias]);
       app.use(alias, express.static(localDir, config.options));
-      console.log('Static alias \''+alias+'\' to \''+localDir+'\'');
+      console.log('* Static alias \''+alias+'\' to \''+localDir+'\'');
     }
 };
 

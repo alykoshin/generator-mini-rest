@@ -11,13 +11,26 @@ var mkdirp = require('mkdirp');
 var npmName = require('npm-name');
 var GithubApi = require('github');
 var shell = require('shelljs');
+var path = require('path');
 //var git = require('simple-git');
 
-var copyDotFile = function(fileName) {
+
+var _copy = function(fromFilename, toFilename) {
   this.fs.copy(
-    this.templatePath('_' + fileName),
-    this.destinationPath('.' + fileName)
+    this.templatePath(fromFilename),
+    this.destinationPath(toFilename)
   );
+};
+
+var copyFile = function(fileName) {
+  _copy.call(this, fileName, fileName);
+};
+
+var copyDotFile = function(fileName) {
+  var baseName = path.basename(fileName);
+  var dirName  = path.dirname(fileName);
+  _copy.call(this, path.join(dirName, '_' + baseName), path.join(dirName, '.' + baseName));
+  //_copy('_' + fileName, '.' + fileName);
 };
 
 var copyTemplate = function(fileName) {
@@ -29,7 +42,7 @@ var copyTemplate = function(fileName) {
 };
 
 
-var MiniNpmGenerator = yeoman.generators.Base.extend({
+var MiniNpmGenerator = yeoman.Base.extend({
   initializing: function () {
     this.pkg       = require('../package.json');
     this.gitconfig = gitconfig.sync();
@@ -56,24 +69,24 @@ var MiniNpmGenerator = yeoman.generators.Base.extend({
       validate: function (str) {
         return str.length > 0;
       }
-    //}, {
-    //  type:    'confirm',
-    //  name:    'pkgName',
-    //  message: 'The name above already exists on npm, choose another?',
-    //  default: true,
-    //  when:    function (answers) {
-    //    var done = this.async();
-    //    process.stdout.write(chalk.yellow('Checking if name is available on NPM...'));
-    //    npmName(answers.pkgName)
-    //      .then(function (available) {
-    //        process.stdout.clearLine();
-    //        process.stdout.cursorTo(0);
-    //        if (!available) {
-    //          done(true);
-    //        }
-    //        done(false);
-    //      });
-    //  }
+      //}, {
+      //  type:    'confirm',
+      //  name:    'pkgName',
+      //  message: 'The name above already exists on npm, choose another?',
+      //  default: true,
+      //  when:    function (answers) {
+      //    var done = this.async();
+      //    process.stdout.write(chalk.yellow('Checking if name is available on NPM...'));
+      //    npmName(answers.pkgName)
+      //      .then(function (available) {
+      //        process.stdout.clearLine();
+      //        process.stdout.cursorTo(0);
+      //        if (!available) {
+      //          done(true);
+      //        }
+      //        done(false);
+      //      });
+      //  }
     }];
     this.prompt(prompts, function (props) {
       this.pkgName    = slug(props.pkgName);
@@ -126,7 +139,7 @@ var MiniNpmGenerator = yeoman.generators.Base.extend({
           //.map(function (val) {              // Add double quotes
           //  return '"' + val + '"';
           //})
-          ;
+        ;
         console.log('keywords:', value);
         return value;
       }
@@ -178,6 +191,8 @@ var MiniNpmGenerator = yeoman.generators.Base.extend({
   },
 
   _write: function() {
+    var self = this;
+
     mkdirp('test');
 
     this.template('package.json',  'package.json');
@@ -189,6 +204,34 @@ var MiniNpmGenerator = yeoman.generators.Base.extend({
     if (this.cli) {
       this.template('cli.js',   'cli.js');
     }
+
+    [
+      'lib/debug.js',
+      'lib/express.js',
+      //'app/index.js',
+      'lib/server.js',
+      'lib/index.js',
+
+      'middlewares/begin/debug.js',
+      'middlewares/begin/index.js',
+      'middlewares/begin/parsers.js',
+      'middlewares/begin/security.js',
+      'middlewares/begin/static.js',
+
+      'middlewares/end/default.js',
+      'middlewares/end/errors.js',
+      'middlewares/end/index.js',
+
+      'public/index.html',
+
+      'routes/api/demo.js',
+      'routes/api/index.js',
+
+      'routes/index.js',
+    ].forEach(function(filename, idx, arr) {
+      //copyFile(filename);
+      copyFile.call(self, filename);
+    }, self);
 
     this.copy('_editorconfig',  '.editorconfig');
     this.copy('_eslintrc',      '.eslintrc');

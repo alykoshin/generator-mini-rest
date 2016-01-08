@@ -3,7 +3,7 @@
 var router = require('express').Router();
 
 
-router.use('/getSteps', require('./getSteps'));
+router.use('/demo', require('./demo'));
 
 
 module.exports = router;

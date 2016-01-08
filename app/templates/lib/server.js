@@ -1,8 +1,8 @@
 'use strict';
 
-var http = require('http');
-var https   = require('https');
-var fs      = require('fs');
+var http  = require('http');
+var https = require('https');
+var fs    = require('fs');
 
 /**
  *
@@ -32,6 +32,19 @@ module.exports = function(config, app) {
     } else {
       server = module.createServer(app);          // http
     }
+    server.on('error', function(e) {
+      switch(e.errno) {
+        case 'EADDRINUSE':
+          console.log('* Port '+port+' is in use:', e);
+          break;
+        case 'EACCES':
+          console.log('* Insufficient privileges, Try to run with sudo', e);
+          break;
+        default:
+          console.log('* Unhandled HTTP/HTTPS error:', e);
+      }
+    });
+
     server.listen(port, function () {
       console.log('* Server listening at ' +
         server.address().address + ':' +
