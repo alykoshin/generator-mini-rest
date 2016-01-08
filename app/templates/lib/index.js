@@ -1,7 +1,7 @@
 'use strict';
 
 
-require('./debug')(app);
+require('./dumpInfo')();
 
 var app = require('./express')();//({ serveStatic: false });
 var server = require('./server')({ httpPort: 8080/*, https: 8081*/ }, app);
