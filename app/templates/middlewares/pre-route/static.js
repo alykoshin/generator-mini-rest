@@ -33,7 +33,7 @@ var useStatic = function(config, app) {
 
 // To set maxAge use following format: https://www.npmjs.com/package/ms
 
-module.exports = function(app) {
+module.exports = function(config, app) {
 //  var alias = '/', dir = '/public';
 //  app.use('/', express.static('/public', { /* maxAge: '1d' */ }));
 //  console.log('Static alias \'/\' to \'/public\'');

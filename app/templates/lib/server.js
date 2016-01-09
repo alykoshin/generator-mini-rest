@@ -56,10 +56,10 @@ module.exports = function(config, app) {
 
   function getHttpsOptions(certConfig) {
     var options = {
-      key:  fs.readFileSync(certConfig.PATH + certConfig.KEY),
-      cert: fs.readFileSync(certConfig.PATH + certConfig.CERT),
-      ca:   fs.readFileSync(certConfig.PATH + certConfig.CA),
-      requestCert: false, // true, // When true, Firefox requests: 'This site has requested that you identify yourself with a certificate
+      key:  fs.readFileSync(certConfig.PATH + certConfig.KEY,  'utf8'),
+      cert: fs.readFileSync(certConfig.PATH + certConfig.CERT, 'utf8'),
+      ca:   fs.readFileSync(certConfig.PATH + certConfig.CA,   'utf8'),
+      requestCert: false, // Request client certificate
       rejectUnauthorized: false
     };
     return options;
@@ -72,52 +72,16 @@ module.exports = function(config, app) {
 
 
   function openHTTPS(app, port) {
-    var options = getHttpsOptions(CONFIG.CERTIFICATE);
+    var options = getHttpsOptions(config.certs);
     return createServer(https, app, options, port);
   }
 
 
-  var https_redirect = function (httpsPort) {
-    console.log('* Enabling redirect HTTP to HTTPS...');
-    return function (req, res, next) {
-      var link;
-      // localhost:8080
-      //var myRegexp = /(.+):(\d{1,5})/g; // does not match '10.10.10.10'
-      var myRegexp = /([a-z0-9\-._~%]+):?(\d+)?/gi;
-      var match    = myRegexp.exec(req.headers.host);
-      var host     = match[ 1 ];
-      var port     = match[ 2 ];
-      //console.log('req.headers.host: \'' + req.headers.host + '; host: \''+host+'\'; port: \''+port+'\'');
-      if (!port) {
-        port = req.secure ? '443' : '80';
-      } // Default values
-      //console.log('host: \''+host+'\'; port: \''+port+'\'');
-      link = 'https://' + host + ':' + httpsPort + req.url;
-      if (req.secure) {
-        //console.log('req.secure')
-        //console.log('port:\''+port+'\'; CONFIG.HTTPS_PORT:\''+CONFIG.HTTPS_PORT+'\'');
-        //console.log('typeof port:\'' + typeof port + '\'; typeof  CONFIG.HTTPS_PORT:\'' + typeof CONFIG.HTTPS_PORT + '\'');
-        //console.log('port === CONFIG.HTTPS_PORT:', (port === CONFIG.HTTPS_PORT) );
-        if (port === '' + httpsPort) {
-          //console.log('req.secure: no redirect');
-          return next();
-        } else {
-          //console.log('req.secure: redirect: '+link);
-          return res.redirect(link);
-        }
-      } else {
-        //console.log('else: '+link);
-        return res.redirect(link);
-      }
-    };
-  };
-
-
   var server;
   var httpPort  = config.httpPort;
-  var httpsPort  = config.httpsPort;
+  var httpsPort = config.httpsPort;
 
-  if (httpsPort) { // if HTTPS port is configured, start HTTPS server
+  if (httpsPort) { // If HTTPS port is configured, start HTTPS server
     server = openHTTPS(app, httpsPort);
     if (httpPort) { // If HTTP port is configured, open also HTTP only for redirection to HTTPS
       openHTTP(app, httpPort);

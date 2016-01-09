@@ -12,6 +12,8 @@
 
 Simple REST API application scaffolding generator for [Yeoman](http://yeoman.io).
 
+Not yet ready for public use.
+
 
 
 If you have different needs regarding the functionality, please add a [feature request](https://github.com/alykoshin/generator-mini-rest/issues).

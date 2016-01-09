@@ -1,10 +1,10 @@
 'use strict';
 
 
-module.exports = function(app) {
+module.exports = function(config, app) {
 
-  require('./default')(app);
-  require('./errors')(app);
+  require('./default')(config, app);
+  require('./errors')(config, app);
 
 };
 

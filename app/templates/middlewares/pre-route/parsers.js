@@ -3,7 +3,7 @@
 var bodyParser = require('body-parser');
 
 
-module.exports = function(app) {
+module.exports = function(config, app) {
 
   var limit = '1mb';
 

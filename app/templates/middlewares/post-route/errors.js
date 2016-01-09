@@ -5,7 +5,7 @@
 
 // define error-handling middleware last, after other app.use() and routes calls
 
-module.exports = function(app) {
+module.exports = function(config, app) {
 
   app.use(function(err, req, res, next) {
 

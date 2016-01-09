@@ -1,20 +1,20 @@
 'use strict';
 
 
-module.exports = function(app) {
+module.exports = function(config, app) {
 
 /*  require('./static')({
     //root: __dirname,
     aliases: { '/': '/public' },
     //options: { maxAge: '1d' }, // default = 0;
   }, app); */
-  require('./debug')(app);
+  require('./debug')(config, app);
 
-  require('./parsers')(app);
+  require('./parsers')(config, app);
 
-  require('./security')(app);
+  require('./security')(config, app);
 
-  require('./static')(app);
+  require('./static')(config, app);
 
 };
 

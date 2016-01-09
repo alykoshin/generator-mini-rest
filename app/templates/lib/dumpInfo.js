@@ -4,6 +4,7 @@ var os = require('os');
 
 var pkg = require('../package.json');
 
+
 module.exports = function() {
 
   console.log('* pkg.name: \''    + pkg.name    + '\'');

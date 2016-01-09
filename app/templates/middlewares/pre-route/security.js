@@ -21,7 +21,7 @@ var secure  = require('express-secure-only'),
   rateLimit = require('express-rate-limit'),
   helmet    = require('helmet');
 
-module.exports = function (app) {
+module.exports = function (config, app) {
   app.enable('trust proxy');
 
   // 1. redirects http to https
