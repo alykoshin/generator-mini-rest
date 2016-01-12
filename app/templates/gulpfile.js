@@ -3,6 +3,7 @@
 var gulp        = require('gulp');
 
 var bump        = require('gulp-bump');
+var gulpNSP     = require('gulp-nsp');
 var gutil       = require('gulp-util');
 var zip         = require('gulp-zip');
 var runSequence = require('run-sequence');
@@ -16,6 +17,13 @@ var base = [
   '!./node_modules/**/*'
 ];
 
+gulp.task('nsp', function (cb) {
+  gulpNSP({
+    package: __dirname + '/package.json',
+    stopOnError: true
+  }, cb);
+});
+
 gulp.task( 'zip-src', function() {
   var version = require('./package.json').version;  // Get current version
   var date = moment().format('YYYYMMDD-HHmmss');    // ... and current date
@@ -28,22 +36,25 @@ gulp.task( 'zip-src', function() {
     .pipe( gulp.dest( './dist/' ) );
 });
 
+
 gulp.task('bump-patch', function () {
   //Note: I have hardcoded the version change type to 'patch' but it may be a good idea to use
   //      minimist (https://www.npmjs.com/package/minimist) to determine with a command argument whether you are doing
   //      a 'major', 'minor' or a 'patch' change.
   return gulp.src(['./bower.json', './package.json'])
-    .pipe(bump({type: "patch"}).on('error', gutil.log))
+    .pipe(bump({type: 'patch'}).on('error', gutil.log))
     .pipe(gulp.dest('./'));
 });
 
+
 gulp.task('build', function() {
   return runSequence(
+    'nsp',
     'bump-patch',
     'zip-src',
     function (error) {
       if (error) { gutil.log(error.message); }
-      else { gutil.log('RELEASE FINISHED SUCCESSFULLY'); }
+      else { gutil.log('BUILD FINISHED SUCCESSFULLY'); }
       //callback(error);
     }
   );

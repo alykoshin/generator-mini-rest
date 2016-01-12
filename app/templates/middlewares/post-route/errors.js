@@ -5,12 +5,13 @@
 
 // define error-handling middleware last, after other app.use() and routes calls
 
-module.exports = function(config, app) {
-
-  app.use(function(err, req, res, next) {
+module.exports = function(config) {
+  return function(err, req, res, next) {
 
     // Print error to console
-    console.trace(err);
+    console.error(err.message);
+    console.error(err.stack);
+    //console.trace(err);
     //console.log(err.stack);
 
     var error = {
@@ -19,7 +20,7 @@ module.exports = function(config, app) {
       error:  err.message,
     };
 
-    if (app.get('env') === 'development') {
+    if (process.env.NODE_ENV === 'development') {
 
       error.stack = err.stack || ''; // Return stack only in development mode
 
@@ -39,7 +40,6 @@ module.exports = function(config, app) {
       .status(error.status)
       .json( error );
 
-  });
-
+  };
 };
 

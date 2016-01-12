@@ -1,8 +1,8 @@
 'use strict';
 
 
-
 require('./init')();
+
 require('./dumpInfo')();
 
 var app = require('./express')();//({ serveStatic: false });

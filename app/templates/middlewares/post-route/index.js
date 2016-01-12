@@ -1,10 +1,14 @@
 'use strict';
 
 
-module.exports = function(config, app) {
+module.exports = function(config) {
 
-  require('./default')(config, app);
-  require('./errors')(config, app);
+  var router = require('express').Router();
+
+
+  router.use('./notFound404')(config);
+  router.use('./errors')(config);
+
 
 };
 

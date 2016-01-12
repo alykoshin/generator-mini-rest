@@ -13,7 +13,8 @@ module.exports = function(config) {
   app.use('/', require('../routes'));
   //require('../routes')(app);
 
-  require('../middlewares/post-route')(config, app);
+  //require('../middlewares/post-route')(config, app);
+  app.use( require('../middlewares/post-route')(config) );
 
   return app;
 };

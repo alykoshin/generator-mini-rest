@@ -4,10 +4,11 @@
   "description": "Simple REST API application scaffolding generator for Yeoman",
   "main": "app/index.js",
   "scripts": {
+    "nsp": "nsp check",
     "lint": "eslint -f unix .",
     "inspect": "jsinspect",
-    "pretest": "npm run inspect",
-    "_pretest": "npm run lint && npm run inspect",
+    "pretest": "npm run inspect && npm run nsp",
+    "_pretest": "npm run lint && npm run inspect && npm run nsp",
     "test": "echo \"Warning: no test specified\" && exit 0",
     "_test": "echo \"Error: no test specified\" && exit 1",
     "__test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*",

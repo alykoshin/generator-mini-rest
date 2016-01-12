@@ -195,32 +195,38 @@ var MiniNpmGenerator = yeoman.Base.extend({
 
     mkdirp('test');
 
-    this.template('package.json',  'package.json');
-    this.template('README.md',     'README.md');
-    this.template('LICENSE',       'LICENSE');
-    this.template('test/index.js', 'test/index.js');
 
     this.template('index.js',   'index.js');
+    this.template('LICENSE',       'LICENSE');
     if (this.cli) {
       this.template('cli.js',   'cli.js');
     }
+    this.template('package.json',  'package.json');
+    this.template('README.md',     'README.md');
+
+    this.template('test/index.js', 'test/index.js');
 
     [
-      'lib/debug.js',
-      'lib/express.js',
       //'app/index.js',
-      'lib/server.js',
+
+      'lib/dumpInfo.js',
+      'lib/express.js',
       'lib/index.js',
+      'lib/init.js',
+      'lib/server.js',
 
-      'middlewares/begin/debug.js',
-      'middlewares/begin/index.js',
-      'middlewares/begin/parsers.js',
-      'middlewares/begin/security.js',
-      'middlewares/begin/static.js',
+      'middlewares/pre-route/debug.js',
+      //'middlewares/pre-route/https-redirect.js',
+      'middlewares/pre-route/index.js',
+      'middlewares/pre-route/parsers.js',
+      'middlewares/pre-route/security.js',
+      'middlewares/pre-route/static.js',
 
-      'middlewares/end/default.js',
-      'middlewares/end/errors.js',
-      'middlewares/end/index.js',
+      'middlewares/post-route/errors.js',
+      'middlewares/post-route/index.js',
+      'middlewares/post-route/notFound404.js',
+
+      'middlewares/nocache.js',
 
       'public/index.html',
 
@@ -234,14 +240,16 @@ var MiniNpmGenerator = yeoman.Base.extend({
     }, self);
 
     this.copy('_editorconfig',  '.editorconfig');
-    this.copy('_eslintrc',      '.eslintrc');
     this.copy('_eslintignore',  '.eslintignore');
+    this.copy('_eslintrc',      '.eslintrc');
     this.copy('_gitattributes', '.gitattributes');
     this.copy('_gitignore',     '.gitignore');
     this.copy('_jshintrc',      '.jshintrc');
     this.copy('_jsinspectrc',   '.jsinspectrc');
+    this.copy('_npmignore',     '.npmignore');
     this.copy('_travis.yml',    '.travis.yml');
 
+    this.copy('gulpfile.js',    'gulpfile.js');
     this.copy('inch.json',      'inch.json');
 
     if (this.git) {

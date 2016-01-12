@@ -19,7 +19,7 @@ If you have different needs regarding the functionality, please add a [feature r
 # Prerequisites
 
 Assuming node and npm are already installed.
-All examples provided for Linux system.
+If not othwerwise mentioned, all examples are provided for Linux system.
 
 
 # Installation
@@ -31,8 +31,12 @@ All examples provided for Linux system.
 - install dependencies: `npm install`
 ```
 
-# Run 
-- `node index.js` 
+# Start 
+To start the application run in command line
+
+```sh
+node .
+```
 
 
 # Usage

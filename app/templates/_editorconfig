@@ -12,5 +12,9 @@ insert_final_newline = true
 [*.md]
 trim_trailing_whitespace = false
 
+[*.{js,json,rb,css,html}]
+
+[*.go]
+
 [Makefile]
 indent_style = tab

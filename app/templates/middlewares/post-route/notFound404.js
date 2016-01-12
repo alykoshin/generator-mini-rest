@@ -2,9 +2,9 @@
 
 
 // All pages returns 404 (excluding handled before)
-module.exports =  function(app) {
 
-  app.use(function (req, res, next) {
+module.exports =  function(config) {
+  return function (req, res, next) {
 
     //res
     //  .status(404)
@@ -21,8 +21,7 @@ module.exports =  function(app) {
     //err.text = 'Not Found';
     next(err);
 
-  });
-
+  };
 };
 
 

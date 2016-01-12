@@ -17,27 +17,35 @@
 'use strict';
 
 // security.js
-var secure  = require('express-secure-only'),
-  rateLimit = require('express-rate-limit'),
-  helmet    = require('helmet');
+//var secure  = require('express-secure-only');
+var rateLimit = require('express-rate-limit');
+var helmet    = require('helmet');
 
-module.exports = function (config, app) {
-  app.enable('trust proxy');
+var router = require('express').Router();
+
+
+module.exports = function (config) {
+
+  router.enable('trust proxy');
 
   // 1. redirects http to https
-  app.use(secure());
+  //router.use(secure());
 
   // 2. helmet with defaults
-  app.use(helmet());
+  router.use(helmet());
 
   //app.disable('x-powered-by');
 
   // 3. rate-limit to /api/
-  app.use('/api/', rateLimit({
-    windowMs: 60 * 1000, // seconds
-    delayMs: 0,
-    max: 50
-  }));
+  //router.use('/api/', rateLimit({
+  router.use('*', rateLimit({
+      windowMs: 60 * 1000, // seconds
+      delayMs: 0,
+      max: 50
+    })
+  );
+
+  return router;
 
 };
 
