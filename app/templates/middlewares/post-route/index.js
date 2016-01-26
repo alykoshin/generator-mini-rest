@@ -7,7 +7,7 @@ module.exports = function(config) {
 
 
   router.use('./notFound404')(config);
-  router.use('./errors')(config);
+  router.use('./errorHandler')(config);
 
 
 };

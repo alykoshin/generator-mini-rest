@@ -24,9 +24,9 @@ var helmet    = require('helmet');
 var router = require('express').Router();
 
 
-module.exports = function (config) {
+module.exports = function (config, app) {
 
-  router.enable('trust proxy');
+  app.enable('trust proxy');
 
   // 1. redirects http to https
   //router.use(secure());

@@ -14,7 +14,7 @@ module.exports =  function(config) {
     //notFound.status = 404;
     //next(err);
 
-    var err = new Error('Not Found');
+    var err = new Error('Page Not Found: originalUrl: \''+ req.originalUrl+'\'');
     err.code = 'pageNotFound';
     err.status = 404;
     //err.message = 'Not Found';

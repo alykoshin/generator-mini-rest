@@ -26,9 +26,7 @@ function version() {
 if (argv.indexOf('--help') !== -1) {
   help();
   process.exit(0);
-}
-
-if (argv.indexOf('--version') !== -1) {
+} else if (argv.indexOf('--version') !== -1) {
   version();
   process.exit(0);
 }

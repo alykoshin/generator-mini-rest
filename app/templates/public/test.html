@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/1.2.0/jquery.serializeJSON.min.js"></script>
+  <script>
+
+    $(document).ready(function() {
+
+      $("#doPostJson").click(function(e) {
+        var obj = {
+          text: $("#text").val()
+        };
+        var type = 'POST';
+        var url = "http://localhost:3022/post_json";
+        var data = JSON.stringify(obj);
+        $("#response").val( $("#response").val() +
+          'Request:\ntype: ' + type + '\nurl: ' + url + '\n' +
+          'data: ' + data + '\n' );
+        $.ajax({
+          url : url,
+          type: type,
+          data : data,
+          dataType: "json",
+          crossDomain: true,
+          contentType: "application/json; charset=utf-8",
+          success: function(responseData) {
+            $("#response").val( $("#response").val() +
+              'Response:\n' + JSON.stringify(responseData) + '\n\n' );
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            $("#response").val( $("#response").val() + 'ERROR:\n' + jqXHR + textStatus + errorThrown + '\n\n');
+          }
+        });
+        e.preventDefault();
+      });
+
+      $("#doPostUrlencoded").click(function(e) {
+//        var obj = {
+//          text: $("#text").val()
+//        };
+        var type = 'POST';
+        var url = "http://localhost:3022/post_urlencoded";
+        var data = $('#ajaxform').serialize();
+
+        console.log(this);
+
+        $("#response").val( $("#response").val() +
+          'Request:\ntype: ' + type + '\nurl: ' + url + '\n' +
+          'data: ' + data + '\n' );
+        $.ajax({
+          url : url,
+          type: type,
+          data : data,
+          dataType: "text",
+          crossDomain: true,
+          contentType: "application/x-www-form-urlencoded",
+          success: function(responseData) {
+            $("#response").val( $("#response").val() +
+              'Response:\n' + JSON.stringify(responseData) + '\n\n' );
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            $("#response").val( $("#response").val() + 'ERROR:\n' + jqXHR + textStatus + errorThrown + '\n\n');
+          }
+        });
+        e.preventDefault();
+      });
+
+    });
+  </script>
+</body>
+<div id="message"> </div>
+<form name="ajaxform" id="ajaxform" method="POST" action="/post_urlencoded">
+  <label for="text">text: </label>
+  <input type="text" id="text" name="text" style="width: 400px;" value="Test data"/> <br/>
+  <input type="button" class="btn btn-info" id="doPostJson" value="Post with jQuery Ajax (JSON)">
+  <input type="button" class="btn btn-info" id="doPostUrlencoded" value="Post with jQuery Ajax (URL encoded)">
+  <input type="submit" class="btn btn-info" id="doPostForm" value="Post Form with regular Submit (URL encoded)">
+</form>
+Response: <br/>
+<textarea id="response" name="response" rows="20" cols="60"></textarea>
+<br/>
+</html>
