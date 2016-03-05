@@ -15,7 +15,7 @@ module.exports = function(config, app) {
   //return router;
 
   app.use(require('mini-rest-404')(config));
-  app.use(require('./errorHandler')(config));
+  app.use(require('mini-rest-error-handler')(config));
 
 
 };
