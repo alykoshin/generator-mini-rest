@@ -21,6 +21,8 @@
 var rateLimit = require('express-rate-limit');
 var helmet    = require('helmet');
 
+var log = console.log;
+
 var router = require('express').Router();
 
 
@@ -31,11 +33,13 @@ module.exports = function (config, app) {
   // 1. redirects http to https
   //router.use(secure());
 
+  log('* Enabling helmet package...');
   // 2. helmet with defaults
   router.use(helmet());
 
   //app.disable('x-powered-by');
 
+  log('* Limiting number of requests using express-rate-limit...');
   // 3. rate-limit to /api/
   //router.use('/api/', rateLimit({
   router.use('*', rateLimit({

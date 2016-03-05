@@ -43,8 +43,10 @@
   "homepage": "https://github.com/<%= githubName %>/<%= pkgName %>",
   "dependencies": {
     "body-parser": "^1.14.2",
+    "debug": "^2.2.0",
     "express": "^4.13.3",
     "express-rate-limit": "^2.0.2",
+    "helmet": "^1.1.0",
     "lodash": "^3.10.1",
     "path": "^0.12.7",
     "mini-https-redirect": "^0.0.1"

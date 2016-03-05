@@ -222,7 +222,7 @@ var MiniNpmGenerator = yeoman.Base.extend({
       'middlewares/pre-route/security.js',
       'middlewares/pre-route/static.js',
 
-      'middlewares/post-route/errors.js',
+      'middlewares/post-route/errorHandler.js',
       'middlewares/post-route/index.js',
       'middlewares/post-route/notFound404.js',
 
@@ -232,6 +232,7 @@ var MiniNpmGenerator = yeoman.Base.extend({
 
       'routes/api/demo.js',
       'routes/api/index.js',
+      'routes/api/test.js',
 
       'routes/index.js',
     ].forEach(function(filename, idx, arr) {

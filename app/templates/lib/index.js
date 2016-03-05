@@ -5,8 +5,11 @@ require('./init')();
 
 require('./dumpInfo')();
 
-var app = require('./express')();//({ serveStatic: false });
-var server = require('./server')({ httpPort: 8080/*, https: 8081*/ }, app);
+
+var config = { httpPort: 8080 };//, httpsPort: 8081 };
+
+var app = require('./express')(config);//({ serveStatic: false });
+var server = require('./server')(config, app);
 
 module.exports = {
   app: app,
