@@ -52,8 +52,8 @@
     "gitconfig": "^1.4.0",
     "github": "^0.2.4",
     "lodash": "^4.6.1",
-    "mini-rest-404": "0.0.3",
-    "mini-rest-errors": "0.0.3",
+    "mini-rest-404": "0.0.4",
+    "mini-rest-errors": "0.1.1",
     "mkdirp": "^0.5.1",
     "npm-name": "^2.1.0",
     "shelljs": "^0.6.0",
@@ -68,6 +68,6 @@
     "jshint": "^2.9.1",
     "jsinspect": "^0.8.0",
     "mocha": "^2.4.5",
-    "mockery": "^1.4.0"
+    "mockery": "^1.4.1"
   }
 }
