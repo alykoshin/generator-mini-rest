@@ -1,6 +1,6 @@
 {
   "name": "generator-mini-rest",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple REST API application scaffolding generator for Yeoman",
   "main": "app/index.js",
   "scripts": {
