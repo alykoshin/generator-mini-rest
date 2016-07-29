@@ -47,27 +47,27 @@
   },
   "homepage": "https://github.com/alykoshin/generator-mini-rest",
   "dependencies": {
-    "chalk": "^1.1.1",
+    "chalk": "^1.1.3",
     "git-config": "0.0.7",
-    "gitconfig": "^1.4.0",
-    "github": "^0.2.4",
-    "lodash": "^4.6.1",
-    "mini-rest-404": "0.0.4",
-    "mini-rest-errors": "0.1.1",
+    "gitconfig": "^2.0.2",
+    "github": "^2.4.0",
+    "lodash": "^4.14.1",
+    "mini-rest-404": "0.0.6",
+    "mini-rest-errors": "0.1.6",
     "mkdirp": "^0.5.1",
-    "npm-name": "^2.1.0",
-    "shelljs": "^0.6.0",
+    "npm-name": "^3.0.0",
+    "shelljs": "^0.7.3",
     "slug": "^0.9.1",
-    "yeoman-generator": "^0.22.5"
+    "yeoman-generator": "^0.24.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "coveralls": "^2.11.8",
-    "eslint": "^2.3.0",
-    "istanbul": "^0.4.2",
-    "jshint": "^2.9.1",
+    "coveralls": "^2.11.12",
+    "eslint": "^3.2.0",
+    "istanbul": "^0.4.4",
+    "jshint": "^2.9.2",
     "jsinspect": "^0.8.0",
-    "mocha": "^2.4.5",
-    "mockery": "^1.4.1"
+    "mocha": "^2.5.3",
+    "mockery": "^1.7.0"
   }
 }
