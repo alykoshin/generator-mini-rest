@@ -51,7 +51,7 @@
     "git-config": "0.0.7",
     "gitconfig": "^2.0.3",
     "github": "^9.2.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.5",
     "mini-rest-404": "0.0.8",
     "mini-rest-errors": "0.1.11",
     "mkdirp": "^0.5.1",
