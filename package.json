@@ -26,7 +26,9 @@
     "patch-release": "npm test && npm run _patch-release && npm run _push",
     "minor-release": "npm test && npm run _minor-release && npm run _push",
     "__major-release": "npm test && npm run _major-release && npm run _push",
-    "coverall": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "coverall": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -58,7 +60,8 @@
     "npm-name": "^3.0.0",
     "shelljs": "^0.7.7",
     "slug": "^0.9.1",
-    "yeoman-generator": "^1.1.1"
+    "yeoman-generator": "^1.1.1",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -69,5 +72,6 @@
     "jsinspect": "^0.12.3",
     "mocha": "^3.2.0",
     "mockery": "^2.0.0"
-  }
+  },
+  "snyk": true
 }
