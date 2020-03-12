@@ -54,11 +54,11 @@
     "lodash": "^4.17.4",
     "mini-rest-404": "0.0.8",
     "mini-rest-errors": "0.1.11",
-    "mkdirp": "^0.5.1",
+    "mkdirp": "^1.0.0",
     "npm-name": "^3.0.0",
     "shelljs": "^0.7.7",
     "slug": "^0.9.1",
-    "yeoman-generator": "^1.1.1"
+    "yeoman-generator": "^2.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
